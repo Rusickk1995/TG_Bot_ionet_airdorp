@@ -1,1 +1,1 @@
-# TG_Bot_ionet_airdorp
+# TG_Bot_ionet_airdrop
