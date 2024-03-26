@@ -1,12 +1,13 @@
 import telebot
 from telebot import types
 
-TOKEN = 'YOUR BOT TOKEN HERE'
+TOKEN = '7085195061:AAEwK2WdQu6AaaV5j9FgTUe9yCwBSQ01d80'
 
 bot = telebot.TeleBot(TOKEN)
 
 chat_states = {}
 
+previous_chat_states = {}
 # Словарь для хранения соответствий текста кнопок и путей к изображениям
 button_image_paths = {
     "Explanation of Work Status": r"C:\Users\slapa\Downloads\Снимок экрана 2024-03-19 122637.png",
@@ -108,8 +109,8 @@ def handle_buttons(message):
 
         },
         "Russia": {
-            "Windows": "Скоро...",
-            "Mac": "Скоро...",
+            "Windows": "https://youtu.be/01Z-cpmMK5Y?si=pmjC2wRfG9rPxejW",
+            "Mac": "https://youtu.be/J1zM3fEM3J4?si=E-J-6oGNSAAPDgu2",
             "Linux": "Описание для Linux",
             "Обьяснение Статуса Работника": """ Разъяснение каждого термина Вашего работника, 
 1) Running - Этот статус означает, что у вас всё установлено правильно и всё работает.
@@ -141,9 +142,7 @@ def handle_buttons(message):
         "French": {
             "Windows": "https://youtu.be/qjgBeg0GsQA?si=563aJ3zWnVa1SM0v",
             "Mac": "https://www.youtube.com/watch?v=3mljYOoId4Q",
-            "Linux": """Bientôt, il y aura une vidéo...
-
-Lien: https://io-net-francais-docs.gitbook.io/untitled/guide-dinstallation-fourniture/installation-sur-ubuntu """,
+            "Linux": """Bientôt, il y aura une vidéo...""",
             "Explication du statut de l’employé": """ Explication de chaque terme de votre employé
 1) Running - Ce statut signifie que tout est correctement installé et fonctionne.
 2) Paused - Ce statut signifie que vous avez mis en pause ou arrêté manuellement le nœud.
@@ -416,22 +415,94 @@ Ini adalah terjemahan ke dalam bahasa Indonesia dari setiap istilah."""
 
     links = {
         "English": {
-            "Windows": "https://developers.io.net/docs/installing-on-windows",
+            "Windows": "https://io-net-ukrainian-docs.gitbook.io/untitled/posibnik-iz-vstanovlennya-postachannya/vstanovlennya-na-windows",
             "Mac": "https://developers.io.net/docs/installing-on-mac-os",
             "Linux": "https://developers.io.net/docs/installing-on-ubuntu",
             "Explanation of Work Status": None
         },
+        "Russia": {
+            "Windows": "https://io-russian-net.gitbook.io/io.net-russian-docs/rukovodstvo-po-ustanovke-postavka/ustanovka-na-windows",
+            "Mac": "https://io-russian-net.gitbook.io/io.net-russian-docs/rukovodstvo-po-ustanovke-postavka/ustanovka-na-macos",
+            "Linux": "https://io-russian-net.gitbook.io/io.net-russian-docs/rukovodstvo-po-ustanovke-postavka/ustanovka-na-ubuntu",
+            "Explanation of Work Status": None
 
+        },
+        "Ukraine": {
+            "Windows": "https://io-net-ukrainian-docs.gitbook.io/untitled/posibnik-iz-vstanovlennya-postachannya/vstanovlennya-na-windows",
+            "Mac": "https://io-net-ukrainian-docs.gitbook.io/untitled/posibnik-iz-vstanovlennya-postachannya/vstanovlennya-na-macos",
+            "Linux": "https://io-net-ukrainian-docs.gitbook.io/untitled/posibnik-iz-vstanovlennya-postachannya/vstanovlennya-na-ubuntu",
+            "Explanation of Work Status": None
+
+        },
+        "French": {
+            "Windows": "https://io-net-francais-docs.gitbook.io/untitled/guide-dinstallation-fourniture/installation-sous-windows",
+            "Mac": "https://io-net-francais-docs.gitbook.io/untitled/guide-dinstallation-fourniture/installation-sur-macos",
+            "Linux": "https://io-net-francais-docs.gitbook.io/untitled/guide-dinstallation-fourniture/installation-sur-ubuntu",
+            "Explanation of Work Status": None
+        },
+        "German": {
+            "Windows": "https://io-net-deutch-docs.gitbook.io/untitled/installationsanleitung-lieferung/installation-unter-windows",
+            "Mac": "https://io-net-deutch-docs.gitbook.io/untitled/installationsanleitung-lieferung/installation-unter-macos",
+            "Linux": "https://io-net-deutch-docs.gitbook.io/untitled/installationsanleitung-lieferung/installation-unter-ubuntu",
+            "Explanation of Work Status": None
+
+        },
+        "Spanish": {
+            "Windows": "https://io-net-spanish-docs.gitbook.io/io.net-spanish-docs/guia-de-instalacion-suministro/instalacion-en-windows",
+            "Mac": "https://io-net-spanish-docs.gitbook.io/io.net-spanish-docs/guia-de-instalacion-suministro/instalacion-en-macos",
+            "Linux": "https://io-net-indonesian-docs.gitbook.io/untitled/panduan-instalasi-pekerja/menginstal-di-ubuntu",
+            "Explanation of Work Status": None
+
+        },
+        "Indonesian": {
+            "Windows": "https://io-net-indonesian-docs.gitbook.io/untitled/panduan-instalasi-pekerja/menginstal-di-windows",
+            "Mac": "https://io-net-indonesian-docs.gitbook.io/untitled/panduan-instalasi-pekerja/menginstal-di-macos",
+            "Linux": "https://io-net-spanish-docs.gitbook.io/io.net-spanish-docs/guia-de-instalacion-suministro/instalacion-en-ubuntu",
+            "Explanation of Work Status": None
+
+        },
+        "Vietnamese": {
+            "Windows": "https://io-net-vietnamese-docs.gitbook.io/untitled/huong-dan-lap-dat-cong-nhan/cai-dat-tren-windows",
+            "Mac": "https://io-net-vietnamese-docs.gitbook.io/untitled/huong-dan-lap-dat-cong-nhan/cai-dat-tren-macos",
+            "Linux": "https://io-net-vietnamese-docs.gitbook.io/untitled/huong-dan-lap-dat-cong-nhan/cai-dat-tren-ubuntu",
+            "Explanation of Work Status": None
+        },
+        "Japan": {
+            "Windows": "https://io-net-japanese-docs.gitbook.io/io.net-japanese-docs/worker-insutrugaido/windows-henoinsutru",
+            "Mac": "https://io-net-japanese-docs.gitbook.io/io.net-japanese-docs/worker-insutrugaido/macoshenoinsutru",
+            "Linux": "https://io-net-japanese-docs.gitbook.io/io.net-japanese-docs/worker-insutrugaido/ubuntuhenoinsutru",
+            "Explanation of Work Status": None
+        },
+        "Turkish": {
+            "Windows": "https://io-net-turkish.gitbook.io/io.net-turkish-docs/calisan-kurulum-kilavuzlari/windowsa-yuekleme",
+            "Mac": "https://io-net-turkish.gitbook.io/io.net-turkish-docs/calisan-kurulum-kilavuzlari/macosa-yuekleme",
+            "Linux": "https://io-net-turkish.gitbook.io/io.net-turkish-docs/calisan-kurulum-kilavuzlari/ubuntuya-yuekleme",
+            "Explanation of Work Status": None
+        }
     }
 
     button_text = message.text
     description = descriptions.get(selected_language, {}).get(button_text, "No description available.")
-    link = links.get(selected_language, {}).get(button_text)
 
     bot.send_message(chat_id, description)
 
-    if link:
-        bot.send_message(chat_id, "Link: " + link)
+    if selected_language in links:
+        link = links[selected_language].get(button_text)
+        if link:
+            link_name = {
+                "English": "Links",
+                "Russian": "Cсылка",
+                "Ukraine": "Посилання",
+                "French": "Lien",
+                "German": "Referenz",
+                "Spanish": "Referencia",
+                "Indonesian" : "Referensi",
+                "Vietnamese": "Tham khảo",
+                "Japan": "参考",
+                "Turkish": "Referans"
+                # Добавьте названия ссылок для остальных языков
+            }.get(selected_language, "Ссылка")
+            bot.send_message(chat_id, f"{link_name}: {link}")
 
 
 languages_to_use = {
@@ -470,20 +541,6 @@ galxe_links = {
     "갈스크": "https://galxe.com/io.net",
 }
 
-
-def start(update, context):
-    # Описание бота
-    bot_description = "Добро пожаловать! Этот бот предоставляет доступ к документации по языкам и устройствам."
-
-    # Отправляем описание бота
-    update.message.reply_text(bot_description)
-
-    # Отправляем кнопку старт
-    start_button = types.KeyboardButton('/start')
-    custom_keyboard = types.ReplyKeyboardMarkup([[start_button]], resize_keyboard=True)
-    update.message.reply_text("Нажмите кнопку 'Старт', чтобы начать.", reply_markup=custom_keyboard)
-
-
 @bot.message_handler(commands=['start'])
 def start(message):
     # Получаем информацию о пользователе
@@ -494,15 +551,17 @@ def start(message):
     # Формируем приветственное сообщение с использованием имени пользователя
     greeting_message = f"Hello, {first_name} ({username})!  I'm Bot io.net, providing comprehensive project information."
 
-    # Описание бота
-    bot_description = "Information on Discord Roles / Node Installation (Mac / Windows / Linux), troubleshooting errors, and more."
+    # Создаем клавиатуру с кнопкой "Выбор языка"
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    choose_language_button = types.KeyboardButton("Language selection")
+    markup.add(choose_language_button)
 
-    # Отправляем приветственное сообщение
-    bot.send_message(message.chat.id, greeting_message)
+    # Отправляем приветственное сообщение с клавиатурой
+    bot.send_message(message.chat.id, greeting_message, reply_markup=markup)
 
-    # Отправляем описание бота
-    bot.send_message(message.chat.id, bot_description)
 
+@bot.message_handler(func=lambda message: message.text == "Language selection")
+def choose_language(message):
     # Создаем клавиатуру с выбором языка
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
     languages = list(languages_to_use.keys())[:25]
@@ -511,7 +570,6 @@ def start(message):
 
     # Отправляем сообщение с предложением выбрать язык
     bot.send_message(message.chat.id, 'Choose your language:', reply_markup=markup)
-
 
 @bot.message_handler(content_types=['text'])
 def bot_message(message):
@@ -595,6 +653,43 @@ def bot_message(message):
         else:
             pass
 
+def send_nodes_menu(message):
+    chat_id = message.chat.id
+    selected_language = chat_states.get(chat_id, "Russia")
+
+    nodes_menu_buttons = translate_buttons(["Mac", "Windows", "Linux", "Explanation of Work Status", "Back"],
+                                           selected_language)
+
+    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
+    markup.add(*nodes_menu_buttons)
+
+    nodes_menu_messages = {
+        "English": "Choose Your Operating System:",
+        "Russia": "Выберите вашу операционную систему:",
+        "Ukraine": "Виберіть вашу операційну систему:",
+        "French": "Choisissez votre système d’exploitation:",
+        "German": "Wählen Sie Ihr Betriebssystem:",
+        "Spanish": "Elige tu sistema operativo:",
+        "Indonesian": "Pilih Sistem Operasi Anda:",
+        "Malay": "Pilih Sistem Pengendalian Anda:",
+        "Vietnamese": "Chọn hệ điều hành của bạn:",
+        "Japan": "オペレーティング システムの選択:",
+        "Hindi": "अपना ऑपरेटिंग सिस्टम चुनें:",
+        "Filipino": "Piliin ang Iyong Operating System:",
+        "Korean": "운영 체제 선택:",
+        "China": "選擇您的作業系統:",
+        "Portugal": "Escolha seu sistema operacional:",
+        "Turkish": "İşletim Sisteminizi Seçin:",
+        "Poland": "Wybierz swój system operacyjny:",
+        "Italian": "Scegli il tuo sistema operativo:",
+        "Romanian": "Alegeți sistemul de operare:",
+        "Dutch": "Kies uw besturingssysteem:",
+        # Добавьте остальные языки
+    }
+
+    nodes_menu_message = nodes_menu_messages.get(selected_language, "Choose your operating system:")
+
+    bot.send_message(chat_id, nodes_menu_message, reply_markup=markup)
 
 def send_main_menu(message):
     chat_id = message.chat.id
@@ -914,45 +1009,6 @@ def translate_buttons(buttons, language):
     }
 
     return translations.get(language, buttons)
-
-
-def send_nodes_menu(message):
-    chat_id = message.chat.id
-    selected_language = chat_states.get(chat_id, "Russia")
-
-    nodes_menu_buttons = translate_buttons(["Mac", "Windows", "Linux", "Explanation of Work Status", "Back"],
-                                           selected_language)
-
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True)
-    markup.add(*nodes_menu_buttons)
-
-    nodes_menu_messages = {
-        "English": "Choose Your Operating System:",
-        "Russia": "Выберите вашу операционную систему:",
-        "Ukraine": "Виберіть вашу операційну систему:",
-        "French": "Choisissez votre système d’exploitation:",
-        "German": "Wählen Sie Ihr Betriebssystem:",
-        "Spanish": "Elige tu sistema operativo:",
-        "Indonesian": "Pilih Sistem Operasi Anda:",
-        "Malay": "Pilih Sistem Pengendalian Anda:",
-        "Vietnamese": "Chọn hệ điều hành của bạn:",
-        "Japan": "オペレーティング システムの選択:",
-        "Hindi": "अपना ऑपरेटिंग सिस्टम चुनें:",
-        "Filipino": "Piliin ang Iyong Operating System:",
-        "Korean": "운영 체제 선택:",
-        "China": "選擇您的作業系統:",
-        "Portugal": "Escolha seu sistema operacional:",
-        "Turkish": "İşletim Sisteminizi Seçin:",
-        "Poland": "Wybierz swój system operacyjny:",
-        "Italian": "Scegli il tuo sistema operativo:",
-        "Romanian": "Alegeți sistemul de operare:",
-        "Dutch": "Kies uw besturingssysteem:",
-        # Добавьте остальные языки
-    }
-
-    nodes_menu_message = nodes_menu_messages.get(selected_language, "Choose your operating system:")
-
-    bot.send_message(chat_id, nodes_menu_message, reply_markup=markup)
 
 
 bot.polling(none_stop=True)
